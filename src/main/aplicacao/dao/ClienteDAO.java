@@ -64,7 +64,7 @@ public class ClienteDAO extends GenericDAO<Cliente, Long> implements IClienteDAO
     protected void setParametrosQueryInsercao(PreparedStatement stmInsert, Cliente entity) throws SQLException {
         stmInsert.setString(1, entity.getNome());
         stmInsert.setLong(2, entity.getCpf());
-        stmInsert.setLong(3,entity.getRg());
+        stmInsert.setLong(3, entity.getRg());
         stmInsert.setLong(4, entity.getTelefone());
         stmInsert.setString(5, entity.getEndereco());
         stmInsert.setLong(6, entity.getNumero());
@@ -80,13 +80,13 @@ public class ClienteDAO extends GenericDAO<Cliente, Long> implements IClienteDAO
     @Override
     protected void setParametrosQueryAtualizao(PreparedStatement stmUpdate, Cliente entity) throws SQLException {
         stmUpdate.setString(1, entity.getNome());
-        stmUpdate.setLong(3,entity.getRg());
-        stmUpdate.setLong(4, entity.getTelefone());
-        stmUpdate.setString(5, entity.getEndereco());
-        stmUpdate.setLong(6, entity.getNumero());
-        stmUpdate.setString(7, entity.getCidade());
-        stmUpdate.setString(8, entity.getEstado());
-        stmUpdate.setLong(2, entity.getCpf());
+        stmUpdate.setLong(2,entity.getRg());
+        stmUpdate.setLong(3, entity.getTelefone());
+        stmUpdate.setString(4, entity.getEndereco());
+        stmUpdate.setLong(5, entity.getNumero());
+        stmUpdate.setString(6, entity.getCidade());
+        stmUpdate.setString(7, entity.getEstado());
+        stmUpdate.setLong(8, entity.getCpf());
     }
 
     @Override

@@ -32,7 +32,6 @@ public class ClienteDaoTest {
             try {
                 clienteDao.excluir(cli.getCpf());
             } catch (DAOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         });
@@ -141,11 +140,11 @@ public class ClienteDaoTest {
         cliente.setNumero(10);
         cliente.setTelefone(1199999999L);
         Boolean retorno = clienteDao.cadastrar(cliente);
-        assertTrue(retorno);
+        Assert.assertTrue(retorno);
 
         Cliente cliente1 = new Cliente();
         cliente1.setCpf(56565656569L);
-        cliente.setRg(896559995444L);
+        cliente1.setRg(896559995444L);
         cliente1.setNome("Anderson");
         cliente1.setCidade("Curitiba");
         cliente1.setEndereco("End");
@@ -153,7 +152,7 @@ public class ClienteDaoTest {
         cliente1.setNumero(10);
         cliente1.setTelefone(1199999999L);
         Boolean retorno1 = clienteDao.cadastrar(cliente1);
-        assertTrue(retorno1);
+        Assert.assertTrue(retorno1);
 
         Collection<Cliente> list = clienteDao.buscarTodos();
         assertTrue(list != null);
