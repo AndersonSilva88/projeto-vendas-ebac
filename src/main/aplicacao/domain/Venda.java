@@ -96,6 +96,10 @@ public class Venda  implements Persistence {
         return produtos;
     }
 
+    public void setProdutos(Set<ProdutoQuantidade> produtos) {
+        this.produtos = produtos;
+    }
+
     public void adicionarProduto(Produto produto, Integer quantidade) {
         validarStatus();
         Optional<ProdutoQuantidade> op =
