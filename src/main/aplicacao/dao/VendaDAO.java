@@ -20,7 +20,7 @@ public class VendaDAO  extends GenericDAO<Venda, String> implements IVendaDAO {
         PreparedStatement stm = null;
 
         try {
-            String sql = "UPDATE TB_VENDA SET STATUS_VENDA = ? WHERE ID = ?";
+            String sql = "UPDATE TB_VENDAS SET STATUS_VENDA = ? WHERE ID = ?";
             connection= getConnection();
                 stm = connection.prepareStatement(sql);
                 stm.setString(1, Venda.Status.CONCLUIDA.name());
@@ -38,7 +38,7 @@ public class VendaDAO  extends GenericDAO<Venda, String> implements IVendaDAO {
         Connection connection = null;
         PreparedStatement stm = null;
         try {
-            String sql = "UPDATE TB_VENDA SET STATUS_VENDA = ? WHERE ID = ?";
+            String sql = "UPDATE TB_VENDAS SET STATUS_VENDA = ? WHERE ID = ?";
             connection = getConnection();
             stm = connection.prepareStatement(sql);
             stm.setString(1, Venda.Status.CANCELADA.name());
@@ -77,8 +77,8 @@ public class VendaDAO  extends GenericDAO<Venda, String> implements IVendaDAO {
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT V.ID AS ID_VENDA, V.CODIGO, V.VALOR_TOTAL, V.DATA_VENDA, V.STATUS_VENDA, ");
         sb.append("C.ID AS ID_CLIENTE, C.NOME, C.CPF, C.RG, C.TELEFONE, C.ENDERECO, C.NUMERO, C.CIDADE, C.ESTADO ");
-        sb.append("FROM TB_VENDA V ");
-        sb.append("INNER JOIN TB_CLIENTE C ON V.ID_CLIENTE_FK = C.ID ");
+        sb.append("FROM TB_VENDAS V ");
+        sb.append("INNER JOIN TB_CLIENTES C ON V.ID_CLIENTE_FK = C.ID ");
         return sb;
     }
 
@@ -123,8 +123,9 @@ public class VendaDAO  extends GenericDAO<Venda, String> implements IVendaDAO {
         return Venda.class;
     }
 
+
     @Override
-    public void atualizarDados(Venda entity, Venda entityCadastrado) {
+    public void atualiarDados(Venda entity, Venda entityCadastrado) {
         entityCadastrado.setCodigo(entity.getCodigo());
         entityCadastrado.setStatus(entity.getStatus());
     }
@@ -132,9 +133,9 @@ public class VendaDAO  extends GenericDAO<Venda, String> implements IVendaDAO {
     @Override
     protected String getQueryInsercao() {
         StringBuilder sb = new StringBuilder();
-        sb.append("INSERT INTO TB_VENDA ");
+        sb.append("INSERT INTO TB_VENDAS ");
         sb.append("(ID, CODIGO, ID_CLIENTE_FK, VALOR_TOTAL, DATA_VENDA, STATUS_VENDA)");
-        sb.append("VALUES (nextval('sq_venda'),?,?,?,?,?)");
+        sb.append("VALUES (nextval('sq_vendas'),?,?,?,?,?)");
         return sb.toString();
     }
 
@@ -196,7 +197,7 @@ public class VendaDAO  extends GenericDAO<Venda, String> implements IVendaDAO {
             sbProd.append("SELECT PQ.ID, PQ.QUANTIDADE, PQ.VALOR_TOTAL, ");
             sbProd.append("P.ID AS ID_PRODUTO, P.CODIGO, P.NOME, P.DESCRICAO, P.PESO, P.VALOR ");
             sbProd.append("FROM TB_PRODUTO_QUANTIDADE PQ ");
-            sbProd.append("INNER JOIN TB_PRODUTO P ON P.ID = PQ.ID_PRODUTO_FK ");
+            sbProd.append("INNER JOIN TB_PRODUTOS P ON P.ID = PQ.ID_PRODUTO_FK ");
             sbProd.append("WHERE PQ.ID_VENDA_FK = ?");
             stmProd = connection.prepareStatement(sbProd.toString());
             stmProd.setLong(1, venda.getId());

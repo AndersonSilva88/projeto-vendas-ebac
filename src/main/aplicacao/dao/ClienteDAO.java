@@ -19,7 +19,7 @@ public class ClienteDAO extends GenericDAO<Cliente, Long> implements IClienteDAO
     }
 
     @Override
-    public void atualizarDados(Cliente entity, Cliente entityCadastrado) {
+    public void atualiarDados(Cliente entity, Cliente entityCadastrado) {
         entityCadastrado.setCidade(entity.getCidade());
         entityCadastrado.setCpf(entity.getCpf());
         entityCadastrado.setRg(entity.getRg());
@@ -33,29 +33,30 @@ public class ClienteDAO extends GenericDAO<Cliente, Long> implements IClienteDAO
     @Override
     protected String getQueryInsercao() {
         StringBuilder sb = new StringBuilder();
-        sb.append("INSERT INTO TB_CLIENTE ");
-        sb.append("(ID, NOME, CPF, RG, TEL, ENDERECO, NUMERO, CIDADE, ESTADO)");
-        sb.append("VALUES (nextval('sq_cliente'),?,?,?,?,?,?,?)");
+        sb.append("INSERT INTO TB_CLIENTES ");
+        sb.append("(ID, NOME, CPF, RG, TELEFONE, ENDERECO, NUMERO, CIDADE, ESTADO)");
+        sb.append("VALUES (nextval('sq_clientes'),?,?,?,?,?,?,?,?)");
         return sb.toString();
     }
 
     @Override
     protected String getQueryExclusao() {
-        return "DELETE FROM TB_CLIENTE WHERE CPF = ?";
+        return "DELETE FROM TB_CLIENTES WHERE CPF = ?";
     }
 
     @Override
     protected String getQueryAtualizacao() {
         StringBuilder sb = new StringBuilder();
-        sb.append("UPDATE TB_CLIENTE ");
+        sb.append("UPDATE TB_CLIENTES ");
         sb.append("SET NOME = ?,");
+        sb.append("RG = ?,");
         sb.append("TELEFONE = ?,");
         sb.append("ENDERECO = ?,");
         sb.append("NUMERO = ?,");
         sb.append("CIDADE = ?,");
         sb.append("ESTADO = ?");
-        sb.append("WHERE CPF = ?,");
-        sb.append("RG = ? ");
+        sb.append("WHERE CPF = ? ");
+
         return sb.toString();
     }
 
@@ -79,13 +80,13 @@ public class ClienteDAO extends GenericDAO<Cliente, Long> implements IClienteDAO
     @Override
     protected void setParametrosQueryAtualizao(PreparedStatement stmUpdate, Cliente entity) throws SQLException {
         stmUpdate.setString(1, entity.getNome());
-        stmUpdate.setLong(2, entity.getTelefone());
-        stmUpdate.setString(3, entity.getEndereco());
-        stmUpdate.setLong(4, entity.getNumero());
-        stmUpdate.setString(5, entity.getCidade());
-        stmUpdate.setString(6, entity.getEstado());
-        stmUpdate.setLong(7, entity.getCpf());
-        stmUpdate.setLong(8, entity.getRg());
+        stmUpdate.setLong(3,entity.getRg());
+        stmUpdate.setLong(4, entity.getTelefone());
+        stmUpdate.setString(5, entity.getEndereco());
+        stmUpdate.setLong(6, entity.getNumero());
+        stmUpdate.setString(7, entity.getCidade());
+        stmUpdate.setString(8, entity.getEstado());
+        stmUpdate.setLong(2, entity.getCpf());
     }
 
     @Override

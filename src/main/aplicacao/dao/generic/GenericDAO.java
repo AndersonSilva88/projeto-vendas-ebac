@@ -22,7 +22,7 @@ import static main.aplicacao.dao.generic.jdbc.ConnectionFactory.getConnection;
 public abstract class GenericDAO<T extends Persistence, E extends Serializable> implements IGenericDAO<T, E> {
 
     public abstract Class<T> getTipoClasse();
-    public abstract void atualizarDados(T entity, T entityCadastrado);
+    public abstract void atualiarDados(T entity, T entityCadastrado);
     protected abstract String getQueryInsercao();
     protected abstract String getQueryExclusao();
     protected abstract String getQueryAtualizacao();

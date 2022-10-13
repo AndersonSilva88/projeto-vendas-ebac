@@ -19,13 +19,13 @@ public class Cliente implements Persistence {
     private Long rg;
     @ColunaTabela(dbName = "telefone", setJavaName = "setTelefone")
     private Long telefone;
-    @ColunaTabela(dbName = "endereço", setJavaName = "setEndereco")
+    @ColunaTabela(dbName = "endereco", setJavaName = "setEndereco")
     private String endereco;
     @ColunaTabela(dbName = "numero", setJavaName = "setNumero")
     private Integer numero;
     @ColunaTabela(dbName = "cidade", setJavaName = "setCidade")
     private String cidade;
-    @ColunaTabela(dbName = "estdado", setJavaName = "setEstado")
+    @ColunaTabela(dbName = "estado", setJavaName = "setEstado")
     private String estado;
 
     public Long getId() {

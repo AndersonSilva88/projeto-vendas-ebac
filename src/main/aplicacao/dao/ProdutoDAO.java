@@ -21,7 +21,7 @@ public class ProdutoDAO extends GenericDAO<Produto, String> implements IProdutoD
     }
 
     @Override
-    public void atualizarDados(Produto entity, Produto entityCadastrado) {
+    public void atualiarDados(Produto entity, Produto entityCadastrado) {
         entityCadastrado.setCodigo(entity.getCodigo());
         entityCadastrado.setDescricao(entity.getDescricao());
         entityCadastrado.setNome(entity.getNome());
@@ -32,7 +32,7 @@ public class ProdutoDAO extends GenericDAO<Produto, String> implements IProdutoD
     @Override
     protected String getQueryInsercao() {
         StringBuilder sb = new StringBuilder();
-        sb.append("INSERT INTO TB_PRODUTO ");
+        sb.append("INSERT INTO TB_PRODUTOS ");
         sb.append("(ID, CODIGO, NOME, DESCRICAO, PESO, VALOR)");
         sb.append("VALUES (nextval('sq_produto'),?,?,?,?)");
 
@@ -41,7 +41,7 @@ public class ProdutoDAO extends GenericDAO<Produto, String> implements IProdutoD
 
     @Override
     protected String getQueryExclusao() {
-        return "DELETE FROM TB_PRODUTO WHERE CODIGO = ?";
+        return "DELETE FROM TB_PRODUTOS WHERE CODIGO = ?";
     }
 
     @Override
